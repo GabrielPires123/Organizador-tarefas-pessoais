@@ -22,7 +22,7 @@ public class Main
         Scanner sc = new Scanner(System.in);
         List<CadastrarAtividade> cadastrarList = new ArrayList<>();
         SimpleDateFormat fds = new SimpleDateFormat("dd/MM/yy");
-
+        int id =1;
         int x =1;
         while(x != 0){
             System.out.println("Menu\n" +
@@ -44,7 +44,7 @@ public class Main
                     sc.nextLine(); // Consumir a linha restante no buffer
 
                     for (int i = 1; i <= quantidade; i++) {
-                        int id =1;
+
                         System.out.println("Digite o nome da atividade: ");
                         String nome = sc.nextLine();
 
@@ -63,9 +63,10 @@ public class Main
                 case 2:
                     if(cadastrarList.size() != 0)
                     {
+                        System.out.println("Tarefas: \n");
                         for (CadastrarAtividade i : cadastrarList)
                         {
-                            System.out.println("Tarefas: \n" + i.getNomeAtividade() + "\nData:" + fds.format(i.getData()) +
+                            System.out.println("Item: " + i.getNomeAtividade() + "\nData:" + fds.format(i.getData()) +
                                     "\nDescrição: " + i.getDescricao());
                         }
                     }
@@ -81,23 +82,32 @@ public class Main
 
                 case 4:
 
-                    if(cadastrarList.size() != 0)
-                    {
-                        int resp;
-                        for (CadastrarAtividade i : cadastrarList)
-                        {
-
-                            System.out.printf("Qual tarefa deseja excluir? %n " +
-                                    "%d Tarefas: %s", i.getId(), i.getNomeAtividade());
-                            resp = sc.nextInt();
-                            cadastrarList.remove(resp-1);
+                    if (cadastrarList.size() != 0) {
+                        System.out.println("Atividades disponíveis:");
+                        for (CadastrarAtividade i : cadastrarList) {
+                            System.out.printf("ID: %d | Nome: %s%n", i.getId(), i.getNomeAtividade());
                         }
 
+                        System.out.println("Digite o ID da atividade que deseja excluir:");
+                        int resp = sc.nextInt();
 
-                    }
-                    else
-                    {
-                        System.out.println("Adicione uma tarefa para ser listada  ");
+                        // Buscar atividade pelo ID
+                        CadastrarAtividade atividadeToRemove = null;
+                        for (CadastrarAtividade i : cadastrarList) {
+                            if (i.getId() == resp) {
+                                atividadeToRemove = i;
+                                break;
+                            }
+                        }
+
+                        if (atividadeToRemove != null) {
+                            cadastrarList.remove(atividadeToRemove);
+                            System.out.println("Atividade removida com sucesso!");
+                        } else {
+                            System.out.println("ID não encontrado. Nenhuma atividade foi removida.");
+                        }
+                    } else {
+                        System.out.println("Não há atividades para excluir.");
                     }
                     break;
                 default:

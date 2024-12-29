@@ -9,8 +9,8 @@ public class CadastrarAtividade {
     private String descricao;
     private Date data;
 
-    public CadastrarAtividade(String nomeAtividade, String descricao, Date data ,Integer id) {
-        //this.data = data;
+    public CadastrarAtividade(String nomeAtividade, String descricao, Date data ,Integer id)
+    {
         this.descricao = descricao;
         this.nomeAtividade = nomeAtividade;
         this.id = id;
