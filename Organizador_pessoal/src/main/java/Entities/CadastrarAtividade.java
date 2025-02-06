@@ -6,20 +6,18 @@ import java.util.Date;
 
 public class CadastrarAtividade {
 
-    private Integer id;
     private String nomeAtividade;
     private String descricao;
     private Date data;
     private final SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yy");
 
 
-    public CadastrarAtividade(String nomeAtividade, String descricao, Date data ,Integer id)
+    public CadastrarAtividade(String nomeAtividade, String descricao, Date data)
     {
-        validaçãoString(nomeAtividade);
-        validaçãoData(data);
+        /*validaçãoString(nomeAtividade);
+        validaçãoData(data);*/
         this.descricao = descricao;
         this.nomeAtividade = nomeAtividade;
-        this.id = id;
         this.data = data;
     }
 
@@ -28,7 +26,7 @@ public class CadastrarAtividade {
     }
 
     public void setData(Date data) {
-        validaçãoData(data);
+        //validaçãoData(data);
         this.data = data;
     }
 
@@ -46,17 +44,12 @@ public class CadastrarAtividade {
         return nomeAtividade;
     }
 
-    public void setNomeAtividade(String nomeAtividade) {
+    /*public void setNomeAtividade(String nomeAtividade) {
         validaçãoString(nomeAtividade);
         this.nomeAtividade = nomeAtividade;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-
-    public void validaçãoString(String nome)
+   public void validaçãoString(String nome)
     {
         if (nome == null || nome.trim().isEmpty())
         {
@@ -66,6 +59,7 @@ public class CadastrarAtividade {
             throw new RuntimeException("Entrada inválida! O título deve conter apenas letras.");
         }
     }
+
     public void validaçãoData(Date date)
     {
         Date now = new Date();
@@ -73,15 +67,15 @@ public class CadastrarAtividade {
         {
             throw new RuntimeException("Data informada não pode ser no passado. Insira uma data igual ou posterior a hoje, " + dataFormatada.format(now));
         }
-    }
+    }*/
 
     @Override
     public String toString() {
         return "\n===== Lista de Atividades =====" +
-                "\nID: " + id+
                 "\nNome: " + nomeAtividade +
                 "\nData: " + dataFormatada.format(data) +
                 "\nDescrição: " + descricao +
              "\n-------------------------------";
     }
 }
+
