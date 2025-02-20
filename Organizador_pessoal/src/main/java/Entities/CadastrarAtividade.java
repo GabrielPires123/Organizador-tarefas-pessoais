@@ -2,23 +2,29 @@ package Entities;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class CadastrarAtividade {
 
+    private Integer id;
     private String nomeAtividade;
     private String descricao;
     private Date data;
     private final SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yy");
 
 
-    public CadastrarAtividade(String nomeAtividade, String descricao, Date data)
+    public CadastrarAtividade()
     {
         /*validaçãoString(nomeAtividade);
         validaçãoData(data);*/
-        this.descricao = descricao;
-        this.nomeAtividade = nomeAtividade;
+    }
+
+    public CadastrarAtividade(Integer id, String nomeAtividade,String descricao, Date data) {
         this.data = data;
+        this.descricao = descricao;
+        this.id = id;
+        this.nomeAtividade = nomeAtividade;
     }
 
     public Date getData() {
@@ -26,8 +32,11 @@ public class CadastrarAtividade {
     }
 
     public void setData(Date data) {
-        //validaçãoData(data);
         this.data = data;
+    }
+
+    public SimpleDateFormat getDataFormatada() {
+        return dataFormatada;
     }
 
     public String getDescricao() {
@@ -35,13 +44,36 @@ public class CadastrarAtividade {
     }
 
     public void setDescricao(String descricao) {
-
         this.descricao = descricao;
     }
 
-    public String getNomeAtividade() {
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getNomeAtividade() {
         return nomeAtividade;
+    }
+
+    public void setNomeAtividade(String nomeAtividade) {
+        this.nomeAtividade = nomeAtividade;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CadastrarAtividade that = (CadastrarAtividade) o;
+        return Objects.equals(id, that.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 
     /*public void setNomeAtividade(String nomeAtividade) {
@@ -71,10 +103,11 @@ public class CadastrarAtividade {
 
     @Override
     public String toString() {
-        return "\n===== Lista de Atividades =====" +
-                "\nNome: " + nomeAtividade +
-                "\nData: " + dataFormatada.format(data) +
-                "\nDescrição: " + descricao +
+        return "\n-------------------------------" +
+                "\nID: " + getId()+
+                "\nNome: " + getNomeAtividade() +
+                "\nData: " + getDataFormatada().format(data) +
+                "\nDescrição: " + getDescricao() +
              "\n-------------------------------";
     }
 }
